@@ -1,0 +1,192 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --color-bakery-primary: #e07a5f;
+  --color-bakery-secondary: #f4f1de;
+  --color-bakery-dark: #3d405b;
+  --color-bakery-accent: #81b29a;
+  --color-bakery-light: #f2cc8f;
+  --color-bakery-cream: #FAF8F5;
+  --color-bakery-burgundy: #4A2E2B;
+  --color-bakery-brown: #725C58;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #FAF8F5;
+  color: #4A2E2B;
+  overflow-x: hidden;
+}
+
+/* 高级玻璃拟物化样式类 */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(114, 92, 88, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(74, 46, 43, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(74, 46, 43, 0.3);
+}
+
+/* Hide scrollbar utility */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes star-sparkle {
+  0%, 100% {
+    transform: scale(0.8) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2) rotate(90deg);
+    opacity: 0.85;
+  }
+}
+
+@keyframes subtle-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(224, 122, 95, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(224, 122, 95, 0.45));
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-slow-spin {
+  animation: slow-spin 25s linear infinite;
+}
+
+.animate-star {
+  animation: star-sparkle 4s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: subtle-glow 4s ease-in-out infinite;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* Glowing Text Effect for Title */
+.glowing-title {
+  background: linear-gradient(135deg, #4A2E2B 30%, #e07a5f 60%, #4A2E2B 90%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite, subtle-glow 4s ease-in-out infinite;
+}
+
+/* ========= 骑手端暗黑机能风配色规范 ========= */
+:root {
+  --rider-bg: #0A0A0A;
+  --rider-surface: #1C1C1E;
+  --rider-border: #333333;
+  --rider-neon-green: #00FF66;
+  --rider-neon-red: #FF3B30;
+  --rider-neon-blue: #0A84FF;
+  --rider-text-main: #FFFFFF;
+  --rider-text-sub: #8E8E93;
+}
+
+/* 专为数字设计的等宽字体工具类 */
+.font-mono-num {
+  font-family: 'SF Mono', 'Roboto Mono', 'Consolas', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 纯粹黑暗模式容器工具类 */
+.bg-rider-dark {
+  background-color: var(--rider-bg);
+  color: var(--rider-text-main);
+}
+.bg-rider-surface {
+  background-color: var(--rider-surface);
+  border: 1px solid var(--rider-border);
+  box-shadow: none !important; /* 彻底移除阴影 */
+}
+.text-rider-green { color: var(--rider-neon-green) !important; }
+.text-rider-red { color: var(--rider-neon-red) !important; }
+.text-rider-blue { color: var(--rider-neon-blue) !important; }
+.text-rider-sub { color: var(--rider-text-sub) !important; }

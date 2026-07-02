@@ -1,0 +1,106 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: CrayfishBakery
+  
+  # 数据库自动初始化配置
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/data.sql
+
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/yuhan_bakery?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 30000
+      pool-name: HikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+
+  # Redis 配置
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password:
+      database: 0
+      timeout: 5000ms
+      lettuce:
+        pool:
+          max-active: 50
+          max-idle: 10
+          min-idle: 2
+          max-wait: -1ms
+
+  # RabbitMQ 配置
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        acknowledge-mode: manual # 手动确认消息，防丢失
+        prefetch: 1
+
+  # 文件上传配置
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# MyBatis-Plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.cyh.yuhanbakery.entity
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开发环境打印 SQL 日志
+
+# JWT 自定义配置
+crayfish:
+  jwt:
+    # 用于 HMAC-SHA256 的 Base64 编码密钥，至少 256 位
+    secret: d29uZGVyZnVsY3JheWZpc2hiYWtlcnlzZWNyZXRrZXlmb3Jqd3R0b2tlbnNpZ25pbmc=
+    # 过期时间：7 天 (毫秒)
+    expiration: 604800000
+    token-header: Authorization
+    token-prefix: "Bearer "
+
+# 阿里云 OSS 配置
+aliyun:
+  oss:
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    access-key: ${ALIBABA_ACCESS_KEY_ID}
+    secret-key: ${ALIBABA_SECRET_KEY}
+    bucket-name: cyh666
+    root-dir: YuhanBakery
+
+# 微信支付模拟配置
+wechat:
+  pay:
+    merchant-id: "1900008989"
+    api-v3-key: "mock_wechat_pay_api_v3_key_12345"
+
+# 火山引擎 AI 大模型配置
+volcengine:
+  ark:
+    api-key: "ark-b9d194dd-ec57-4130-9ae4-00c737c28f78-d6add"
+    model-id: "deepseek-v3-2-251201"
