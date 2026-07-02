@@ -88,8 +88,8 @@ crayfish:
 aliyun:
   oss:
     endpoint: oss-cn-hangzhou.aliyuncs.com
-    access-key: ${ALIBABA_ACCESS_KEY_ID}
-    secret-key: ${ALIBABA_SECRET_KEY}
+    access-key-id: ${ALIBABA_ACCESS_KEY_ID:placeholder}
+    access-key-secret: ${ALIBABA_SECRET_KEY:placeholder}
     bucket-name: cyh666
     root-dir: YuhanBakery
 
